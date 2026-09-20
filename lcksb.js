@@ -34,7 +34,7 @@ try {
         }
         if (obj.data.nickname !== undefined) {
             // nickname 为昵称
-            obj.data.nickname = "聂伟";
+            obj.data.nickname = "李春";
         }
         if (obj.data.vip_type !== undefined) {
             // vip_type 为会员类型
