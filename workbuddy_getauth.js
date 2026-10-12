@@ -1,9 +1,9 @@
 /******************************
 脚本名称：WorkBuddy 抓取 token
-Version  : v1.0.0
+Version  : v1.0.1
 作者：lichun
 Platform : Quantumult X
-脚本功能：抓取运行时明文 access_token 存入本地
+脚本功能：抓取运行时明文 access_token 存入本地（显示片段便于确认）
 *******************************/
 const NAME = "WorkBuddy-Auth";
 const KEY  = "workbuddy_auth";
@@ -25,13 +25,16 @@ if (/(codebuddy\.cn|workbuddy\.cn|workbuddy\.ai)/.test(url)) {
   if (auth && /^Bearer\s+/i.test(auth)) {
     const bare = auth.replace(/^Bearer\s+/i, "");
     const old  = $prefs.valueForKey(KEY);
-    $prefs.setValueForKey(bare, KEY);
-    $prefs.setValueForKey(pick(headers, ["X-User-Id"]) || "", KEY + "_uid");
-    $prefs.setValueForKey(pick(headers, ["X-Domain"]) || "", KEY + "_domain");
-    $prefs.setValueForKey(pick(headers, ["X-Enterprise-Id"]) || "", KEY + "_ent");
     if (old !== bare) {
-      $notify(NAME, "✅ 抓到明文 token", url.replace(/^https?:\/\//, "").slice(0, 40));
+      $prefs.setValueForKey(bare, KEY);
+      $prefs.setValueForKey(pick(headers, ["X-User-Id"]) || "", KEY + "_uid");
+      $prefs.setValueForKey(pick(headers, ["X-Domain"]) || "", KEY + "_domain");
+      $prefs.setValueForKey(pick(headers, ["X-Enterprise-Id"]) || "", KEY + "_ent");
     }
+    // 每次都提示，显示来源和 token 片段
+    $notify(NAME,
+            "抓到 token(" + bare.length + "字)",
+            url.replace(/^https?:\/\//, "").slice(0, 36) + "\n" + bare.slice(0, 24) + "...");
   }
 }
 $done({});
