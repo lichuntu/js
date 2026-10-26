@@ -1,0 +1,10 @@
+#!name = 京东-底栏去逛(本地脚本版)
+#!author = lichuntu
+#!update = 2026-10-26
+#!version = 1.0.1
+# 说明: 本版本不依赖网络下载脚本
+# 用法: 把 JD.js 放进 QX 的 Scripts 文件夹，然后引用本文件
+
+^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=readCustomSurfaceList url script-response-body JD.js
+
+hostname = api.m.jd.com
