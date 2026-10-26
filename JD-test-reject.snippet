@@ -1,0 +1,10 @@
+#!name = 京东-诊断测试(临时)
+#!author = lichuntu
+#!update = 2026-10-26
+# 用途: 排查重写规则是否生效
+# 如果底栏发生变化 -> 重写引擎正常，问题在脚本下载
+# 如果毫无变化     -> 规则根本没加载/没启用
+
+^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=readCustomSurfaceList url reject
+
+hostname = api.m.jd.com
