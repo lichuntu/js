@@ -1,0 +1,11 @@
+#!name = 京东 App 净化
+#!author = lichuntu
+#!update = 2026-10-26
+#!version = 1.0.0
+# 基于真机抓包 JD 16.0.70 (build 171012) 编写
+# 功能: 底栏去掉「逛」tab
+# 更新: 在 QX 资源列表里点「更新」即可
+
+^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=readCustomSurfaceList url script-response-body https://cdn.jsdelivr.net/gh/lichuntu/js@main/JD.js
+
+hostname = api.m.jd.com
